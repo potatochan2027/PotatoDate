@@ -18,15 +18,19 @@ public class PotatoDate {
         this.date = new Date();
     }
 
-    public PotatoDate(String dateStr) throws ParseException {
+    public PotatoDate(String dateStr)  {
         try {
             String patten = "yyyy-MM-dd HH:mm:ss";
             SimpleDateFormat sdf = new SimpleDateFormat(patten);
             this.date = sdf.parse(dateStr);
         } catch (ParseException e) {
-            String patten = "yyyy-MM-dd";
-            SimpleDateFormat sdf = new SimpleDateFormat(patten);
-            this.date = sdf.parse(dateStr);
+            try {
+                String patten = "yyyy-MM-dd";
+                SimpleDateFormat sdf = new SimpleDateFormat(patten);
+                this.date = sdf.parse(dateStr);
+            } catch (ParseException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 
@@ -360,6 +364,27 @@ public class PotatoDate {
         return this;
     }
 
+    public PotatoDate endOf(String filed) {
+        switch (filed) {
+            case "year":
+                return endOfYear();
+            case "month":
+                return endOfMonth();
+            case "week":
+                return endOfWeek();
+            case "day":
+                return endOfDay();
+            case "hour":
+                return endOfHour();
+            case "minite":
+                return endOfMinute();
+            case "second":
+                return endOfMinute();
+        }
+        return this;
+    }
+
+
     public PotatoDate startOfYear() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(this.date);
@@ -391,7 +416,7 @@ public class PotatoDate {
         int firstDay = calendar.getFirstDayOfWeek();
         int offset = calendar.get(Calendar.DAY_OF_WEEK) - firstDay;
         if (offset < 0) offset += 7;
-        calendar.add(Calendar.DATE, -offset);
+        calendar.add(Calendar.DATE, -offset+1);
 
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);

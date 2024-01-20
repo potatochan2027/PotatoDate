@@ -138,13 +138,209 @@ public PotatoDate substractMillisecond(int amount)
 
 ## 开始&结尾
 
-开发中，经常遇到需要
+实际开发中，经常需要使用到某个时间的开头及结尾，如今天的开始时间，及结束时间，本周的开始及结束时间，可通过这个系列的方法，进行简单的获取。
+
+本系列方法的精确度到毫秒
+
+### 年-开始&结尾
+
+```
+public PotatoDate startOfYear()
+```
+
+使用方式如下：
+
+```
+public PotatoDate startOfYear() //年的开始
+public PotatoDate endOfYear() //年的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfYear().format());
+System.out.println(new PotatoDate().endOfYear().format());
+
+//输出结果：
+2024-01-01 00:00:00
+2024-12-31 23:59:59
+
+System.out.println(new PotatoDate("2022-07-07").startOfYear().format());
+System.out.println(new PotatoDate("2022-07-07").endOfYear().format());
+
+//输出结果：
+2022-01-01 00:00:00
+2022-12-31 23:59:59
+```
+
+### 月-开始&结尾
+使用方式如下：
+
+```
+public PotatoDate startOfMonth() //月的开始
+public PotatoDate endOfMonth() //月的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfMonth().format());
+System.out.println(new PotatoDate().endOfMonth().format());
+
+//输出结果：
+2024-01-01 00:00:00
+2024-01-31 23:59:59
+```
+
+### 周-开始&结尾
+
+使用方式如下：
+
+```
+public PotatoDate startOfWeek() //周的开始
+public PotatoDate endOfWeek() //周的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfWeek().format());
+System.out.println(new PotatoDate().endOfWeek().format());
+
+//输出结果：
+2024-01-15 00:00:00
+2024-01-21 23:59:59
+```
+
+### 日-开始&结尾
+
+使用方式如下：
+
+```
+public PotatoDate startOfDay() //日的开始
+public PotatoDate endOfDay() //日的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfDay().format());
+System.out.println(new PotatoDate().endOfDay().format());
+
+//输出结果：
+2024-01-20 00:00:00
+2024-01-20 23:59:59
+```
+
+### 小时-开始&结尾
+
+使用方式如下：
+
+```
+public PotatoDate startOfHour() //小时的开始
+public PotatoDate endOfHour() //小时的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfHour().format());
+System.out.println(new PotatoDate().endOfHour().format());
+
+//输出结果：
+2024-01-20 19:00:00
+2024-01-20 19:59:59
+```
+
+### 分钟-开始&结尾
+
+使用方式如下：
+
+```
+public PotatoDate startOfMinute() //分钟的开始
+public PotatoDate endOfMinute() //分钟的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfMinute().format());
+System.out.println(new PotatoDate().endOfMinute().format());
+
+//输出结果：
+2024-01-20 19:52:00
+2024-01-20 19:52:59
+```
+
+### 秒-开始&结尾
+
+使用方式如下：
+
+```
+public PotatoDate startOfSecond() //秒的开始
+public PotatoDate endOfSecond() //秒的结尾
+```
+
+示例如下：
+```
+System.out.println(new PotatoDate().startOfSecond().format("yyyy-MM-dd HH:mm:ss.SSS"));
+System.out.println(new PotatoDate().endOfSecond().format("yyyy-MM-dd HH:mm:ss.SSS"));
+
+//输出结果：
+2024-01-20 19:55:16.000
+2024-01-20 19:55:16.999
+```
+
+### 通用方法
+
+```
+public PotatoDate startOf(String filed);
+public PotatoDate endOf(String filed);
+```
+field 表示具体操作的字段
+
+字段| 含义
+:---:|:---:
+year|年
+month|月
+week|周
+day|日
+hour|时
+minute|分
+second|秒
 
 
-## 取值
+
+
+## 取值 & 赋值
+
+同时提供了各种方法，用于取值，如获取日期中的年、月、日、时分秒、毫秒、时间戳
+
+取值操作为：
+
+```
+public int year();
+public int month();
+public int week();
+public int day();
+public int hour();
+public int minute();
+public int second();
+public int millisecond();
+public long getTimeStamp(); //获取时间戳
+```
+
+赋值操作为：
+```
+public PotatoDate year(int year);
+public PotatoDate month(int month);
+public PotatoDate week(int week);
+public PotatoDate day(int day);
+public PotatoDate hour(int hour);
+public PotatoDate minute(int minute);
+public PotatoDate second(int second);
+public PotatoDate millisecond(int millisecond);
+```
 
 
 ## 其它
 
-### 是否闰年
+```
+public String toString(); //同Date的toString方法
+public Date toDate(); // 转化为普通Date对象
+```
 
